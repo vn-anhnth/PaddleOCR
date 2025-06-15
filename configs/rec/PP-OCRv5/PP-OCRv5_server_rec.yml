@@ -6,9 +6,12 @@ Global:
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: /kaggle/working/output/PP-OCRv5_server_rec
+  # --- sau 999999 mới save 1 epoch
   save_epoch_step: 999999
+  # đánh giá sau mỗi epoch, và lưu đè epoch tốt nhất
   eval_batch_step: [0, 999999]
   save_best_model: True
+  # ---
   cal_metric_during_train: true
   calc_epoch_interval: 1
   pretrained_model: 
@@ -73,6 +76,7 @@ PostProcess:
 
 Metric:
   name: RecMetric
+  # paddle sẽ lưu model tốt nhất dựa trên accuracy
   main_indicator: acc
 
 Train:
