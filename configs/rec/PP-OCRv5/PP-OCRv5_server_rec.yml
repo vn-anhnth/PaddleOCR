@@ -78,10 +78,10 @@ Train:
   dataset:
     name: MultiScaleDataSet
     ds_width: false
-    data_dir: ./train_data/
+    data_dir: /kaggle/working/ocr_rec_dataset_examples/images
     ext_op_transform_idx: 1
     label_file_list:
-    - ./train_data/train_list.txt
+    - /kaggle/working/ocr_rec_dataset_examples/train.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -111,9 +111,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: ./train_data
+    data_dir: /kaggle/working/ocr_rec_dataset_examples/images
     label_file_list:
-    - ./train_data/val_list.txt
+    - /kaggle/working/ocr_rec_dataset_examples/val.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
