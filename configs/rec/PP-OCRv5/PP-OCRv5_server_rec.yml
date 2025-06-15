@@ -78,7 +78,7 @@ Train:
   dataset:
     name: MultiScaleDataSet
     ds_width: false
-    data_dir: /kaggle/working/ocr_rec_dataset_examples/images
+    data_dir: /kaggle/working/ocr_rec_dataset_examples
     ext_op_transform_idx: 1
     label_file_list:
     - /kaggle/working/ocr_rec_dataset_examples/train.txt
@@ -111,7 +111,7 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/working/ocr_rec_dataset_examples/images
+    data_dir: /kaggle/working/ocr_rec_dataset_examples
     label_file_list:
     - /kaggle/working/ocr_rec_dataset_examples/val.txt
     transforms:
