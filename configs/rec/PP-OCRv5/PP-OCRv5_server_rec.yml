@@ -9,7 +9,7 @@ Global:
   # --- sau 999999 mới save 1 epoch
   save_epoch_step: 999999
   # đánh giá sau mỗi epoch, và lưu đè epoch tốt nhất
-  eval_batch_step: [0, 999999]
+  eval_batch_step: [0, 999999] # Khi đánh giá, sẽ chạy đánh giá từ batch 0 đến batch 999999 — về cơ bản là chạy hết toàn bộ tập validation.
   save_best_model: True
   # ---
   cal_metric_during_train: true
