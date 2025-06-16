@@ -20,12 +20,14 @@ Global:
   use_visualdl: false
   # dự đoán khi train ra model thôi, ko cần infer_img
   # infer_img: doc/imgs_words/ch/word_1.jpg
+  ---
   # áp dụng kí tự cho biển số xe ở Việt Nam
   use_space_char: true
-  character_type: ch
+  # k cần set character_type (ch là custom dict), bởi vì có character_dict_path rồi
+  # character_type: ch
   character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/liciense_plate_dict.txt
   # ---
-  max_text_length: &max_text_length 25
+  max_text_length: &max_text_length 12
   infer_mode: false
   distributed: true
   save_res_path: /kaggle/working/output/rec/predicts_ppocrv5.txt
