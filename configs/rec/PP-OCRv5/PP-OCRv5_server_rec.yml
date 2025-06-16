@@ -18,11 +18,12 @@ Global:
   checkpoints:
   save_inference_dir:
   use_visualdl: false
-  infer_img: doc/imgs_words/ch/word_1.jpg
+  # dự đoán khi train ra model thôi, ko cần infer_img
+  # infer_img: doc/imgs_words/ch/word_1.jpg
   # áp dụng kí tự cho biển số xe ở Việt Nam
   use_space_char: true
   character_type: ch
-  character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/ppocrv5_dict.txt
+  character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/liciense_plate_dict.txt
   # ---
   max_text_length: &max_text_length 25
   infer_mode: false
@@ -78,7 +79,7 @@ PostProcess:
   name: CTCLabelDecode
   # áp dụng kí tự cho biển số xe ở Việt Nam
   # character_type: ch
-  # character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/ppocrv5_dict.txt
+  # character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/liciense_plate_dict.txt
   # use_space_char: true
 
 Metric:
@@ -103,7 +104,7 @@ Train:
         gtc_encode: NRTRLabelEncode
         # áp dụng kí tự cho biển số xe ở Việt Nam
         # character_type: ch
-        # character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/ppocrv5_dict.txt
+        # character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/liciense_plate_dict.txt
         # use_space_char: true
     - KeepKeys:
         keep_keys:
@@ -138,7 +139,7 @@ Eval:
         gtc_encode: NRTRLabelEncode
         # áp dụng kí tự cho biển số xe ở Việt Nam
         # character_type: ch
-        # character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/ppocrv5_dict.txt
+        # character_dict_path: /kaggle/working/PaddleOCR/ppocr/utils/dict/liciense_plate_dict.txt
         # use_space_char: true
     - RecResizeImg:
         image_shape: [3, 48, 320]
