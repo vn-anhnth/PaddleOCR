@@ -12,7 +12,7 @@ Global:
   # Bạn train với batch size 512, có tổng khoảng 12,000 ảnh, tức mỗi epoch khoảng 12,000/128 ≈ 94 batches.
   # Với eval_batch_step: [0, 2000], nó sẽ đánh giá:
   #   Lúc đầu (iteration 0, trước khi train)
-  #   Sau mỗi 2000 batches (e.g 2000/94 ≈ 22 epochs)
+  #   Sau mỗi 2000 batches (e.g. 2000/94 ≈ 22 epochs)
   eval_batch_step: [0, 2000]
   save_best_model: True
   # ---
