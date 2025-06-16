@@ -4,12 +4,16 @@ Global:
   use_gpu: true
   epoch_num: 75
   log_smooth_window: 20
-  print_batch_step: 10
+  print_batch_step: 1
   save_model_dir: /kaggle/working/output/PP-OCRv5_server_rec
   # --- sau 999999 mới save 1 epoch
   save_epoch_step: 999999
-  # đánh giá sau mỗi epoch, và lưu đè epoch tốt nhất
-  eval_batch_step: [0, 999999] # Khi đánh giá, sẽ chạy đánh giá từ batch 0 đến batch 999999 — về cơ bản là chạy hết toàn bộ tập validation.
+  # đánh giá sau từng này epoch, và lưu đè epoch tốt nhất
+  # Bạn train với batch size 512, có tổng khoảng 12,000 ảnh, tức mỗi epoch khoảng 12,000/128 ≈ 94 batches.
+  # Với eval_batch_step: [0, 2000], nó sẽ đánh giá:
+  #   Lúc đầu (iteration 0, trước khi train)
+  #   Sau mỗi 2000 batches (e.g 2000/94 ≈ 22 epochs)
+  eval_batch_step: [0, 2000]
   save_best_model: True
   # ---
   cal_metric_during_train: true
