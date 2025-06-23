@@ -97,10 +97,10 @@ Train:
   dataset:
     name: MultiScaleDataSet
     ds_width: false
-    data_dir: /kaggle/input/phd-dataset/cropped_lps
+    data_dir: /kaggle/input/dddddf
     ext_op_transform_idx: 1
     label_file_list:
-    - /kaggle/input/phd-dataset/cropped_lps/train.txt
+    - /kaggle/working/train.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -134,9 +134,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/phd-dataset/cropped_lps
+    data_dir: /kaggle/input/dddddf
     label_file_list:
-    - /kaggle/input/phd-dataset/cropped_lps/val.txt
+    - /kaggle/working/val.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
