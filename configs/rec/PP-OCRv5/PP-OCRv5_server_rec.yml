@@ -23,7 +23,7 @@ Global:
   save_inference_dir:
   use_visualdl: false
   # dự đoán khi train ra model thôi, ko cần infer_img
-  # infer_img: doc/imgs_words/ch/word_1.jpg
+  infer_img: doc/imgs_words/ch/word_1.jpg
   # ---
   # áp dụng kí tự cho biển số xe ở Việt Nam
   use_space_char: true
