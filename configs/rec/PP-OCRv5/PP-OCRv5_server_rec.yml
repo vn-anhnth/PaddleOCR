@@ -24,7 +24,7 @@ Global:
   use_visualdl: false
   # dự đoán khi train ra model thôi, ko cần infer_img
   # infer_img: doc/imgs_words/ch/word_1.jpg
-  ---
+  # ---
   # áp dụng kí tự cho biển số xe ở Việt Nam
   use_space_char: true
   # k cần set character_type (ch là custom dict), bởi vì có character_dict_path rồi
