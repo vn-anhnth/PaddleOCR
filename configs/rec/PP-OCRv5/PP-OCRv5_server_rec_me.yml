@@ -6,15 +6,8 @@ Global:
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: /kaggle/working/output/PP-OCRv5_server_rec
-  # --- sau 999999 mới save 1 epoch
-  save_epoch_step: 1
-  # đánh giá sau từng này epoch, và lưu đè epoch tốt nhất
-  # Bạn train với batch size 512, có tổng khoảng 12,000 ảnh, tức mỗi epoch khoảng 12,000/128 ≈ 94 batches.
-  # Với eval_batch_step: [0, 2000], nó sẽ đánh giá:
-  #   Lúc đầu (iteration 0, trước khi train)
-  #   Sau mỗi 2000 batches (e.g. 2000/94 ≈ 22 epochs)
-  eval_batch_step: [0, 2000]
-  # save_best_model: True
+  save_epoch_step: 999999
+  eval_batch_step: [0, 50]
   # ---
   cal_metric_during_train: true
   calc_epoch_interval: 1
@@ -23,15 +16,15 @@ Global:
   save_inference_dir:
   use_visualdl: false
   # dự đoán khi train ra model thôi, ko cần infer_img
-  infer_img: doc/imgs_words/ch/word_1.jpg
+  # infer_img: doc/imgs_words/ch/word_1.jpg
   # ---
   # áp dụng kí tự cho biển số xe ở Việt Nam
-  use_space_char: true
+  # use_space_char: true
   # k cần set character_type (ch là custom dict), bởi vì có character_dict_path rồi
   # character_type: ch
-  character_dict_path: ./ppocr/utils/dict/ppocrv5_dict.txt
+  character_dict_path: ./ppocr/utils/dict/liciense_plate_dict.txt
   # ---
-  max_text_length: &max_text_length 25
+  max_text_length: &max_text_length 9
   infer_mode: false
   distributed: true
   save_res_path: ./output/rec/predicts_ppocrv5.txt
