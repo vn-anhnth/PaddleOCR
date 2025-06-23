@@ -1,5 +1,6 @@
 Global:
   model_name: PP-OCRv5_server_rec # To use static model for inference.
+  save_best_model: True
   debug: false
   use_gpu: true
   epoch_num: 25
