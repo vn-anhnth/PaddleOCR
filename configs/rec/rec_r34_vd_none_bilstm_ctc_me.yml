@@ -55,7 +55,7 @@ Metric:
 
 Train:
   dataset:
-    name: LMDBDataSet
+    name: SimpleDataSet
     data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
     - /kaggle/working/train_labels.txt
@@ -76,7 +76,7 @@ Train:
 
 Eval:
   dataset:
-    name: LMDBDataSet
+    name: SimpleDataSet
     data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
     - /kaggle/working/val_labels.txt
