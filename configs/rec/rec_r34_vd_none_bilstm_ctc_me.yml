@@ -55,10 +55,8 @@ Metric:
 
 Train:
   dataset:
-    name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
-    label_file_list:
-    - /kaggle/working/train_labels.txt
+    name: LMDBDataSet
+    data_dir: /kaggle/working/train_lmdb
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -70,16 +68,14 @@ Train:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 256
+    batch_size_per_card: 128
     drop_last: True
     num_workers: 8
 
 Eval:
   dataset:
-    name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
-    label_file_list:
-    - /kaggle/working/val_labels.txt
+    name: LMDBDataSet
+    data_dir: /kaggle/working/val_lmdb
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -92,5 +88,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 256
+    batch_size_per_card: 128
     num_workers: 4
