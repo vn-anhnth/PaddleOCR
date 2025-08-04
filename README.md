@@ -1,7 +1,9 @@
 Khi bạn dùng 2 GPU, thì tổng batch_size sẽ là:
 - batch_size_total = batch_size_per_card × số GPU = 256 × 2 = 512
+
 Tính số iteration mỗi epoch:
 - iteration/epoch = số ảnh train / batch_size_total = 25,873 / 512 ≈ 50.5 ≈ 50 iteration
+
 Với cấu hình hiện tại eval_batch_step: [0, 2000]:
 - 2000 iteration / 50 iteration/epoch ≈ 40 epoch
 ---
