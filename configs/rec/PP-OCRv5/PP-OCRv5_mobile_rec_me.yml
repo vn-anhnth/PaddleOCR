@@ -2,7 +2,7 @@ Global:
   model_name: PP-OCRv5_mobile_rec # To use static model for inference.
   debug: false
   use_gpu: true
-  epoch_num: 25
+  epoch_num: 15
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/PP-OCRv5_mobile_rec
@@ -80,7 +80,7 @@ Train:
     data_dir: /kaggle/input/ocr-license-plate-dataset
     ext_op_transform_idx: 1
     label_file_list:
-    - /kaggle/working/train_labels.txt
+    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -117,7 +117,7 @@ Eval:
     name: SimpleDataSet
     data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/working/val_labels.txt
+    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
