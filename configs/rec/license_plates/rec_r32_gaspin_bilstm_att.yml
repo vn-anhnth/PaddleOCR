@@ -89,7 +89,7 @@ Train:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 8
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 4
 
@@ -114,5 +114,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 8
+    batch_size_per_card: 256
     num_workers: 2
