@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/seed
   save_epoch_step: 10
   # evaluation is run every 5000 iterations after the 4000th iteration
-  eval_batch_step: [0, 20]
+  eval_batch_step: [0, 999999999]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -88,25 +88,25 @@ Train:
     drop_last: True
     num_workers: 6
 
-# Eval:
-#   dataset:
-#     name: SimpleDataSet
-#     data_dir: /kaggle/input/ocr-license-plate-dataset
-#     label_file_list:
-#     - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
-#     transforms:
-#       - DecodeImage: # load image
-#           img_mode: BGR
-#           channel_first: False
-#       - SEEDLabelEncode: # Class handling label
-#       - RecResizeImg:
-#           character_dict_path:
-#           image_shape: [3, 64, 256]
-#           padding: False
-#       - KeepKeys:
-#           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
-#   loader:
-#     shuffle: False
-#     drop_last: True
-#     batch_size_per_card: 256
-#     num_workers: 4
+Eval:
+  dataset:
+    name: SimpleDataSet
+    data_dir: /kaggle/input/ocr-license-plate-dataset
+    label_file_list:
+    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    transforms:
+      - DecodeImage: # load image
+          img_mode: BGR
+          channel_first: False
+      - SEEDLabelEncode: # Class handling label
+      - RecResizeImg:
+          character_dict_path:
+          image_shape: [3, 64, 256]
+          padding: False
+      - KeepKeys:
+          keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
+  loader:
+    shuffle: False
+    drop_last: True
+    batch_size_per_card: 256
+    num_workers: 4
