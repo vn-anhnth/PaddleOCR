@@ -208,9 +208,15 @@ class AttentionRecognitionHead(nn.Layer):
 
             # Update fields for next timestep
             pos_index = paddle.expand_as(pos_index, candidates)
+
+            # predecessors = paddle.cast(
+            #     candidates / self.num_classes + pos_index, dtype="int64"
+            # )
             predecessors = paddle.cast(
-                candidates / self.num_classes + pos_index, dtype="int64"
+                paddle.floor(candidates / self.num_classes).astype("int64") + pos_index.astype("int64"),
+                dtype="int64"
             )
+
             predecessors = paddle.reshape(
                 predecessors, shape=[batch_size * beam_width, 1]
             )
