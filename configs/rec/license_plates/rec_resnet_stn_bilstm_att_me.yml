@@ -1,6 +1,6 @@
 Global:
   use_gpu: True
-  epoch_num: 6
+  epoch_num: 12
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec/seed
@@ -65,8 +65,10 @@ Metric:
 
 Train:
   dataset:
-    name: LMDBDataSet
-    data_dir: ./train_data/data_lmdb_release/training/
+    name: SimpleDataSet
+    data_dir: /kaggle/input/ocr-license-plate-dataset
+    label_file_list:
+    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - Fasttext:
           path: "./cc.en.300.bin"
@@ -88,8 +90,10 @@ Train:
 
 Eval:
   dataset:
-    name: LMDBDataSet
-    data_dir: ./train_data/data_lmdb_release/evaluation/
+    name: SimpleDataSet
+    data_dir: /kaggle/input/ocr-license-plate-dataset
+    label_file_list:
+    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
