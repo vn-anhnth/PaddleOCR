@@ -1,6 +1,6 @@
 Global:
   use_gpu: true
-  epoch_num: 8
+  epoch_num: 100
   log_smooth_window: 200
   print_batch_step: 200
   save_model_dir: ./output/rec/r45_visionlan
@@ -67,8 +67,10 @@ Metric:
 
 Train:
   dataset:
-    name: LMDBDataSet
-    data_dir: ./train_data/data_lmdb_release/training/
+    name: SimpleDataSet
+    data_dir: /kaggle/input/ocr-license-plate-dataset
+    label_file_list:
+    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: RGB
@@ -87,8 +89,10 @@ Train:
 
 Eval:
   dataset:
-    name: LMDBDataSet
-    data_dir: ./train_data/data_lmdb_release/validation/
+    name: SimpleDataSet
+    data_dir: /kaggle/input/ocr-license-plate-dataset
+    label_file_list:
+    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: RGB
