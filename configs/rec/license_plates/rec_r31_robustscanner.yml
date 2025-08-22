@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/rec_r31_robustscanner/
   save_epoch_step: 10
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 10000]
+  eval_batch_step: [0, 4000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints: 
