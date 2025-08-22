@@ -29,9 +29,9 @@ Optimizer:
   group_lr: true
   training_step: *training_step
   lr:
-    name: Piecewise
-    decay_epochs: [6]
-    values: [0.0001, 0.00001] 
+    name: Cosine
+    learning_rate: 0.0005
+    warmup_epoch: 5
   regularizer:
     name: 'L2'
     factor: 0
