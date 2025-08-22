@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/rec_r31_robustscanner/
   save_epoch_step: 10
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 2000]
+  eval_batch_step: [0, 10000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints: 
@@ -26,11 +26,12 @@ Optimizer:
   beta1: 0.9
   beta2: 0.999
   lr:
-    name: Const
-    learning_rate: 0.01
+    name: Cosine
+    learning_rate: 0.0005
+    warmup_epoch: 5
   regularizer:
-    name: 'L2'
-    factor: 0
+    name: L2
+    factor: 3.0e-05
 
 Architecture:
   model_type: rec
@@ -81,7 +82,7 @@ Train:
           keep_keys: ['image', 'label', 'valid_ratio', 'word_positons'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 64
+    batch_size_per_card: 32
     drop_last: True
     num_workers: 8
     use_shared_memory: False
@@ -106,7 +107,7 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 64
+    batch_size_per_card: 32
     num_workers: 4
     use_shared_memory: False
   
