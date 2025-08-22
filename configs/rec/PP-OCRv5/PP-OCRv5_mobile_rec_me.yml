@@ -28,7 +28,7 @@ Optimizer:
   beta1: 0.9
   beta2: 0.999
   lr:
-    name: Fixed
+    name: Const
     learning_rate: 0.01
   regularizer:
     name: L2
