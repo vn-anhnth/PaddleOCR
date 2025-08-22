@@ -15,7 +15,7 @@ Global:
   use_visualdl: false
   infer_img: doc/imgs_words/ch/word_1.jpg
   character_dict_path: ./ppocr/utils/dict/license_plate_vn_dict.txt
-  max_text_length: &max_text_length 25
+  max_text_length: &max_text_length 10
   infer_mode: false
   use_space_char: true
   distributed: true
