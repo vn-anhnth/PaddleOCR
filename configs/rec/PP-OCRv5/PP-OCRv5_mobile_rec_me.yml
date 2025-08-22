@@ -28,9 +28,8 @@ Optimizer:
   beta1: 0.9
   beta2: 0.999
   lr:
-    name: Cosine
-    learning_rate: 0.0005
-    warmup_epoch: 5
+    name: Fixed
+    learning_rate: 0.01
   regularizer:
     name: L2
     factor: 3.0e-05
