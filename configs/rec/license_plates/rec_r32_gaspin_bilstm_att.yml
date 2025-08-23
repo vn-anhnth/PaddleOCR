@@ -15,7 +15,7 @@ Global:
   infer_img: doc/imgs_words_en/word_10.png
   # for data or label process
   character_dict_path: ./ppocr/utils/dict/license_plate_vn_dict.txt
-  max_text_length: 10
+  max_text_length: 12
   infer_mode: False
   use_space_char: False
   save_res_path: ./output/rec/predicts_r32_gaspin_bilstm_att.txt
