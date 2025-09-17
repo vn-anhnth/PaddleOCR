@@ -53,6 +53,7 @@ Metric:
   name: RecMetric
   main_indicator: acc
   use_cer: True
+  is_filter: True
 
 Train:
   dataset:
