@@ -14,7 +14,7 @@ Global:
   use_visualdl: False
   infer_img: 
   # for data or label process
-  character_dict_path: ppocr/utils/dict90.txt
+  character_dict_path: ./ppocr/utils/dict/license_plate_vn_dict.txt
   max_text_length: 30
   infer_mode: False
   use_space_char: False
