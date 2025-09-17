@@ -52,6 +52,7 @@ PostProcess:
 Metric:
   name: RecMetric
   main_indicator: acc
+  use_cer: True
 
 Train:
   dataset:
