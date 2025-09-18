@@ -8,7 +8,7 @@ Global:
   # evaluation is run every 5000 iterations after the 4000th iteration
   eval_batch_step: [0, 5000]
   cal_metric_during_train: True
-  pretrained_model: ./pretrain_models/rec_resnet_rfl_visual/best_accuracy.pdparams 
+  pretrained_model:
   checkpoints:
   save_inference_dir:
   use_visualdl: False
