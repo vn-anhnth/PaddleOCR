@@ -7,7 +7,7 @@ Global:
   save_epoch_step: 10
   # evaluation is run every 5000 iterations after the 4000th iteration
   eval_batch_step: [0, 5000]
-  cal_metric_during_train: False
+  cal_metric_during_train: True
   pretrained_model:
   checkpoints: 
   save_inference_dir:
