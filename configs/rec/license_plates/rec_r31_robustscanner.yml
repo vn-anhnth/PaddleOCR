@@ -46,9 +46,9 @@ Architecture:
     hybrid_dec_rnn_layers: 2
     hybrid_dec_dropout: 0
     position_dec_rnn_layers: 2
-    start_idx: 91
+    start_idx: 36
     mask: True
-    padding_idx: 92
+    padding_idx: 37
     encode_value: False
     max_text_length: *max_text_length
 
