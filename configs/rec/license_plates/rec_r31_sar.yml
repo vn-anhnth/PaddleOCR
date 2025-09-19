@@ -50,6 +50,7 @@ PostProcess:
 
 Metric:
   name: RecMetric
+  main_indicator: acc
 
 
 Train:
