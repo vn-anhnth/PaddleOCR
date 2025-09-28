@@ -26,12 +26,12 @@ Optimizer:
   beta1: 0.9
   beta2: 0.999
   lr:
-  #   name: Piecewise
-  #   decay_epochs: [3, 4]
-  #   values: [0.001, 0.0001, 0.00001]
+    # name: Piecewise
+    # decay_epochs: [3, 4]
+    # values: [0.001, 0.0001, 0.00001]
     name: Cosine
-      learning_rate: 0.001
-      # warmup_epoch: 1
+    learning_rate: 0.001
+    # warmup_epoch: 1
   regularizer:
     name: 'L2'
     factor: 0
