@@ -3,7 +3,7 @@ Global:
   epoch_num: 100
   log_smooth_window: 20
   print_batch_step: 20
-  save_model_dir: ./sar_rec
+  save_model_dir: ./output/rec/sar_rec
   save_epoch_step: 10
   # evaluation is run every 2000 iterations
   eval_batch_step: [0, 2000]
@@ -26,9 +26,12 @@ Optimizer:
   beta1: 0.9
   beta2: 0.999
   lr:
-    name: Piecewise
-    decay_epochs: [3, 4]
-    values: [0.001, 0.0001, 0.00001] 
+  #   name: Piecewise
+  #   decay_epochs: [3, 4]
+  #   values: [0.001, 0.0001, 0.00001]
+    name: Cosine
+      learning_rate: 0.001
+      # warmup_epoch: 1
   regularizer:
     name: 'L2'
     factor: 0
