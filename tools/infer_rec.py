@@ -137,7 +137,7 @@ def main():
 
     infer_imgs = config["Global"]["infer_img"]
     infer_list = config["Global"].get("infer_list", None)
-    with open(save_res_path, "w") as fout:
+    with open(save_res_path, "w", encoding="utf-8") as fout:
         for file in get_image_file_list(infer_imgs, infer_list=infer_list):
             logger.info("infer_img: {}".format(file))
             with open(file, "rb") as f:
