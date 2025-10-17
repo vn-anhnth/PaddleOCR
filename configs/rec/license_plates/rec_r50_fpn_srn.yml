@@ -4,7 +4,7 @@ Global:
   log_smooth_window: 20
   print_batch_step: 5
   save_model_dir: ./output/rec/srn_new
-  save_epoch_step: 3
+  save_epoch_step: 5
   # evaluation is run every 5000 iterations after the 4000th iteration
   eval_batch_step: [0, 650]
   cal_metric_during_train: True
@@ -12,6 +12,7 @@ Global:
   checkpoints:
   save_inference_dir:
   use_visualdl: False
+  use_wandb: True
   infer_img: doc/imgs_words/ch/word_1.jpg
   # for data or label process
   character_dict_path: ./ppocr/utils/dict/license_plate_vn_dict.txt
