@@ -913,7 +913,7 @@ def preprocess(is_train=False):
         )
         log_writer = None
     if (
-        "use_wandb" in config["Global"] and config["Global"]["use_wandb"]
+        dist.get_rank() == 0 and "use_wandb" in config["Global"] and config["Global"]["use_wandb"]
     ) or "wandb" in config:
         save_dir = config["Global"]["save_model_dir"]
         wandb_writer_path = "{}/wandb".format(save_dir)
