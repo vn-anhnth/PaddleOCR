@@ -4,7 +4,7 @@ Global:
   log_smooth_window: 20
   print_batch_step: 20
   save_model_dir: ./output/rec/sar_rec
-  save_epoch_step: 10
+  save_epoch_step: 5
   # evaluation is run every 2000 iterations
   eval_batch_step: [0, 2000]
   cal_metric_during_train: True
@@ -12,6 +12,7 @@ Global:
   checkpoints: 
   save_inference_dir:
   use_visualdl: False
+  use_wandb: True
   infer_img: 
   # for data or label process
   character_dict_path: ./ppocr/utils/dict/license_plate_vn_dict.txt
@@ -75,7 +76,7 @@ Train:
           keep_keys: ['image', 'label', 'valid_ratio'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 64
+    batch_size_per_card: 128
     drop_last: True
     num_workers: 8
     use_shared_memory: False
