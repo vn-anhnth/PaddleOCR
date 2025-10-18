@@ -66,9 +66,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: D:/IEEE/data/phD/data/50k_OCR/aaa_train_ne_version_4
+    data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
-    - D:/IEEE/data/phD/data/50k_OCR/aaa_train_ne_version_4/train_labels.txt
+    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -87,9 +87,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: D:/IEEE/data/phD/data/50k_OCR/aaa_train_ne_version_4
+    data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
-    - D:/IEEE/data/phD/data/50k_OCR/aaa_train_ne_version_4/val_labels.txt
+    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
