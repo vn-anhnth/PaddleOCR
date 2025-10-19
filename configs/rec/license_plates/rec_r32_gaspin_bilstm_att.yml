@@ -1,10 +1,10 @@
 Global:
   use_gpu: True
-  epoch_num: 100
+  epoch_num: 105
   log_smooth_window: 50
   print_batch_step: 50
   save_model_dir: ./output/rec/rec_r32_gaspin_bilstm_att/
-  save_epoch_step: 10
+  save_epoch_step: 3
   # evaluation is run every 2000 iterations after the 4000th iteration
   eval_batch_step: [0, 4000]
   cal_metric_during_train: True
@@ -23,19 +23,14 @@ Global:
 
 
 Optimizer:
-  name: Adam
+  name: AdamW
   beta1: 0.9
   beta2: 0.999
   lr:
-    name: Cosine
-    learning_rate: 0.0005
-    warmup_epoch: 5
-  regularizer:
-    name: L2
-    factor: 3.0e-05
-  # lr:
-  #   name: Cosine
-  #   learning_rate: 0.001
+    name: Piecewise
+    decay_epochs: [3, 4, 5]
+    values: [0.001, 0.0003, 0.00009, 0.000027] 
+  clip_norm: 5
 
 Architecture:
   model_type: rec
@@ -73,7 +68,7 @@ PostProcess:
 Metric:
   name: RecMetric
   main_indicator: acc
-  # is_filter: True
+  is_filter: True
 
 Train:
   dataset:
@@ -97,8 +92,7 @@ Train:
     shuffle: True
     batch_size_per_card: 32
     drop_last: True
-    num_workers: 8
-    use_shared_memory: False
+    num_workers: 4
 
 Eval:
   dataset:
@@ -122,5 +116,4 @@ Eval:
     shuffle: False
     drop_last: False
     batch_size_per_card: 32
-    num_workers: 4
-    use_shared_memory: False
+    num_workers: 2
