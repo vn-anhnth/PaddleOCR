@@ -4,7 +4,7 @@ Global:
   log_smooth_window: 20
   print_batch_step: 20
   save_model_dir: ./output/rec/rec_r31_robustscanner/
-  save_epoch_step: 20
+  save_epoch_step: 5
   # evaluation is run every 2000 iterations
   eval_batch_step: [0, 2000]
   cal_metric_during_train: True
