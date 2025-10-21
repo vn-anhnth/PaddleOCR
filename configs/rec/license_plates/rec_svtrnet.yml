@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/svtr/
   save_epoch_step: 5
   # evaluation is run every 2000 iterations after the 0th iteration
-  eval_batch_step: [0, 500]
+  eval_batch_step: [0, 450]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -60,6 +60,7 @@ Architecture:
     local_mixer: [[7, 11], [7, 11], [7, 11]]
     last_stage: True
     prenorm: False
+    pretrained: True
   Neck:
     name: SequenceEncoder
     encoder_type: reshape
