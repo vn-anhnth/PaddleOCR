@@ -11,7 +11,8 @@ Global:
   pretrained_model:
   checkpoints: 
   save_inference_dir:
-  use_visualdl: True
+  use_visualdl: False
+  use_wandb: True
   infer_img: doc/imgs_words/en/word_2.png
   # for data or label process
   character_dict_path: ppocr/utils/dict/license_plate_vn_dict.txt
