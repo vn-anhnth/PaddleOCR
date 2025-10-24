@@ -30,9 +30,13 @@ Optimizer:
   group_lr: true
   training_step: *training_step
   lr:
+    # name: Cosine
+    # learning_rate: 0.0005
+    # warmup_epoch: 5
+
     name: Cosine
-    learning_rate: 0.0005
-    warmup_epoch: 5
+    learning_rate: 0.001
+    warmup_epoch: 10
   regularizer:
     name: 'L2'
     factor: 0
