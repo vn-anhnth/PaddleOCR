@@ -44,7 +44,7 @@ Architecture:
   in_channels: 3
   Transform:
   Backbone:
-    name: ResNet45
+    name: ResNet32
   Head:
     name: ABINetHead
     use_lang: True
