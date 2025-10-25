@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/nrtr/
   save_epoch_step: 10
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 1000]
+  eval_batch_step: [0, 450]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
