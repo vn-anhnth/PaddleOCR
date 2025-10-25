@@ -30,7 +30,7 @@ Optimizer:
   #   name: Piecewise
   #   decay_epochs: [3, 4, 5]
   #   values: [0.001, 0.0003, 0.00009, 0.000027] 
-  # clip_norm: 5
+  clip_norm: 5
 
   name: Adam
   beta1: 0.9
