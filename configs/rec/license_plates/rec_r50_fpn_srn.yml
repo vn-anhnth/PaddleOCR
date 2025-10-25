@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/srn_new
   save_epoch_step: 10
   # evaluation is run every 5000 iterations after the 4000th iteration
-  eval_batch_step: [0, 6000]
+  eval_batch_step: [0, 3500]
   cal_metric_during_train: True
   pretrained_model: 
   checkpoints:
@@ -24,12 +24,23 @@ Global:
 
 
 Optimizer:
+  # name: Adam
+  # beta1: 0.9
+  # beta2: 0.999
+  # clip_norm: 10.0
+  # lr:
+  #   learning_rate: 0.0001
+
   name: Adam
   beta1: 0.9
   beta2: 0.999
-  clip_norm: 10.0
   lr:
-    learning_rate: 0.0001
+    name: Cosine
+    learning_rate: 0.001
+    warmup_epoch: 10
+  regularizer:
+    name: 'L2'
+    factor: 0
 
 Architecture:
   model_type: rec
