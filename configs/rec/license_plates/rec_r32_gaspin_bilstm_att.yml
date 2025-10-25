@@ -4,9 +4,9 @@ Global:
   log_smooth_window: 50
   print_batch_step: 50
   save_model_dir: ./output/rec/rec_r32_gaspin_bilstm_att/
-  save_epoch_step: 3
+  save_epoch_step: 10
   # evaluation is run every 2000 iterations after the 4000th iteration
-  eval_batch_step: [0, 4000]
+  eval_batch_step: [0, 6000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -27,9 +27,13 @@ Optimizer:
   beta1: 0.9
   beta2: 0.999
   lr:
-    name: Piecewise
-    decay_epochs: [3, 4, 5]
-    values: [0.001, 0.0003, 0.00009, 0.000027] 
+    # name: Piecewise
+    # decay_epochs: [3, 4, 5]
+    # values: [0.001, 0.0003, 0.00009, 0.000027] 
+
+    name: Cosine
+    learning_rate: 0.001
+    warmup_epoch: 10
   clip_norm: 5
 
 Architecture:
