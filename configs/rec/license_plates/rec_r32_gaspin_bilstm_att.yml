@@ -27,13 +27,13 @@ Optimizer:
   beta1: 0.9
   beta2: 0.999
   lr:
-    # name: Piecewise
-    # decay_epochs: [3, 4, 5]
-    # values: [0.001, 0.0003, 0.00009, 0.000027] 
+    name: Piecewise
+    decay_epochs: [3, 4, 5]
+    values: [0.001, 0.0003, 0.00009, 0.000027] 
 
-    name: Cosine
-    learning_rate: 0.001
-    warmup_epoch: 10
+    # name: Cosine
+    # learning_rate: 0.001
+    # warmup_epoch: 10
   clip_norm: 5
 
 Architecture:
