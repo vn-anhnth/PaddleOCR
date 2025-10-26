@@ -8,7 +8,7 @@ Global:
   print_batch_step: 10
   save_model_dir: ./output/PP-OCRv5_mobile_rec
   save_epoch_step: 10
-  eval_batch_step: [0, 1800]
+  eval_batch_step: [0, 3500]
   cal_metric_during_train: true
   pretrained_model:
   checkpoints:
@@ -104,7 +104,7 @@ Train:
   sampler:
     name: MultiScaleSampler
     scales: [[320, 32], [320, 48], [320, 64]]
-    first_bs: &bs 128
+    first_bs: &bs 64
     fix_bs: false
     divided_factor: [8, 16] # w, h
     is_training: True
@@ -137,5 +137,5 @@ Eval:
   loader:
     shuffle: false
     drop_last: false
-    batch_size_per_card: 128
+    batch_size_per_card: 64
     num_workers: 4
