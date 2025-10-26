@@ -80,7 +80,7 @@ Train:
     data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
     - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
-    ds_width: false
+    # ds_width: false  # 'SimpleDataSet' object has no attribute 'ds_width'
     ext_op_transform_idx: 1
     transforms:
     - DecodeImage:
