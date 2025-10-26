@@ -76,8 +76,10 @@ Metric:
 
 Train:
   dataset:
-    name: SimpleDataSet
+    name: MultiScaleDataSet
+    ds_width: false
     data_dir: /kaggle/input/ocr-license-plate-dataset
+    ext_op_transform_idx: 1
     label_file_list:
     - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
     ds_width: true
