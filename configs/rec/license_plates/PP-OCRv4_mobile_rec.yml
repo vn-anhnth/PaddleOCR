@@ -80,6 +80,7 @@ Train:
     data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
     - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    ds_width: true
     ext_op_transform_idx: 1
     transforms:
     - DecodeImage:
@@ -118,6 +119,7 @@ Eval:
     data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
     - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    ds_width: true
     transforms:
     - DecodeImage:
         img_mode: BGR
