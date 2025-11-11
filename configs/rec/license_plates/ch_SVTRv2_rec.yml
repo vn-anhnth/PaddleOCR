@@ -7,7 +7,7 @@ Global:
   print_batch_step: 10
   save_model_dir: ./output/ch_SVTRv2_rec
   save_epoch_step: 10
-  eval_batch_step: [0, 2500]
+  eval_batch_step: [0, 2000]
   cal_metric_during_train: False
   pretrained_model:
   checkpoints:
