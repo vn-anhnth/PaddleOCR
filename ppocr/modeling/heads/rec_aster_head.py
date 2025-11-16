@@ -66,13 +66,9 @@ class AsterHead(nn.Layer):
             #     x, self.beam_width, self.eos, embedding_vectors
             # )
 
-            # Use greedy sampling instead of beam_search to avoid CUDA illegal access bug
-            # AttentionRecognitionHead.sample expects a tuple (x, _, _) similar to forward input
-            try:
-                rec_pred, rec_pred_scores = self.decoder.sample((x, None, None))
-            except Exception as e:
-                # Fallback: if sample signature differs, try passing only x
-                rec_pred, rec_pred_scores = self.decoder.sample(x)
+            # them ne
+            # use stable greedy decode instead of beam_search or sample
+            rec_pred, rec_pred_scores = self.decoder.greedy_decode(x, embedding_vectors)
             
             return_dict["rec_pred"] = rec_pred
             return_dict["rec_pred_scores"] = rec_pred_scores
@@ -157,6 +153,38 @@ class AttentionRecognitionHead(nn.Layer):
         predicted_scores = paddle.concat([predicted_scores, 1])
         # return predicted_ids.squeeze(), predicted_scores.squeeze()
         return predicted_ids, predicted_scores
+
+    # them ne
+    # clean greedy decode to replace broken sample()
+    def greedy_decode(self, x, embed):
+        """
+        x: [B, T, D]   (decoder input feature sequence)
+        embed: [B, 300]  (embedding vector)
+        """
+        batch_size = x.shape[0]
+
+        # init decoder state
+        state = self.decoder.get_initial_state(embed)
+
+        # <BOS> token = num_classes
+        y_prev = paddle.full(shape=[batch_size], fill_value=self.num_classes, dtype='int64')
+
+        outputs = []
+        scores = []
+
+        for _ in range(self.max_len_labels):
+            out, state = self.decoder(x, state, y_prev)
+            prob = F.softmax(out, axis=1)
+            score, idx = paddle.max(prob, axis=1)
+
+            outputs.append(idx.unsqueeze(1))
+            scores.append(score.unsqueeze(1))
+
+            y_prev = idx
+
+        outputs = paddle.concat(outputs, axis=1)
+        scores = paddle.concat(scores, axis=1)
+        return outputs, scores
 
     def beam_search(self, x, beam_width, eos, embed):
         def _inflate(tensor, times, dim):
