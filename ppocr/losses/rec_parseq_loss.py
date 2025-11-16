@@ -27,7 +27,14 @@ class ParseQLoss(nn.Layer):
     def forward(self, predicts, targets):
         label = targets[1]  # label
         label_len = targets[2]
-        max_step = paddle.max(label_len).cpu().numpy()[0] + 2
+
+        # max_step = paddle.max(label_len).cpu().numpy()[0] + 2
+        label_len_np = paddle.max(label_len).cpu().numpy()
+        if getattr(label_len_np, "shape", ()) == ():
+            max_step = int(label_len_np) + 2
+        else:
+            max_step = int(label_len_np[0]) + 2
+
         tgt = label[:, :max_step]
 
         logits_list = predicts["logits_list"]
