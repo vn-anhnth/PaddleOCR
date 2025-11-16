@@ -175,7 +175,9 @@ class AttentionRecognitionHead(nn.Layer):
         for _ in range(self.max_len_labels):
             out, state = self.decoder(x, state, y_prev)
             prob = F.softmax(out, axis=1)
-            score, idx = paddle.max(prob, axis=1)
+            
+            idx = paddle.argmax(prob, axis=1)
+            score = paddle.take_along_axis(prob, idx.unsqueeze(1), axis=1).squeeze(1)
 
             outputs.append(idx.unsqueeze(1))
             scores.append(score.unsqueeze(1))
