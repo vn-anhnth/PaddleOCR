@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/seed
   save_epoch_step: 5
   # evaluation is run every 5000 iterations after the 4000th iteration
-  eval_batch_step: [0, 100]
+  eval_batch_step: [0, 500]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -108,5 +108,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: True
-    batch_size_per_card: 8
+    batch_size_per_card: 256
     num_workers: 4
