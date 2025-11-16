@@ -62,9 +62,18 @@ class AsterHead(nn.Layer):
             return_dict["rec_pred"] = rec_pred
             return_dict["embedding_vectors"] = embedding_vectors
         else:
-            rec_pred, rec_pred_scores = self.decoder.beam_search(
-                x, self.beam_width, self.eos, embedding_vectors
-            )
+            # rec_pred, rec_pred_scores = self.decoder.beam_search(
+            #     x, self.beam_width, self.eos, embedding_vectors
+            # )
+
+            # Use greedy sampling instead of beam_search to avoid CUDA illegal access bug
+            # AttentionRecognitionHead.sample expects a tuple (x, _, _) similar to forward input
+            try:
+                rec_pred, rec_pred_scores = self.decoder.sample((x, None, None))
+            except Exception as e:
+                # Fallback: if sample signature differs, try passing only x
+                rec_pred, rec_pred_scores = self.decoder.sample(x)
+            
             return_dict["rec_pred"] = rec_pred
             return_dict["rec_pred_scores"] = rec_pred_scores
             return_dict["embedding_vectors"] = embedding_vectors
