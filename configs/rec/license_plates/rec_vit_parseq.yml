@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/parseq
   save_epoch_step: 10
   # evaluation is run every 5000 iterations after the 4000th iteration
-  eval_batch_step: [0, 200]
+  eval_batch_step: [0, 1200]
   cal_metric_during_train: True
   pretrained_model: 
   checkpoints:
@@ -83,7 +83,7 @@ PostProcess:
 Metric:
   name: RecMetric
   main_indicator: acc
-  is_filter: True
+  # is_filter: True
 
 Train:
   dataset:
