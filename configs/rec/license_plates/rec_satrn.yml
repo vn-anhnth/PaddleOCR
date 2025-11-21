@@ -62,7 +62,7 @@ Architecture:
       d_v: 32
       max_seq_len: 25
       # start_idx: 91
-      start_idx: 37
+      start_idx: 38
 
 Loss:
   name: SATRNLoss
