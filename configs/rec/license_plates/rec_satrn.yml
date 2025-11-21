@@ -4,10 +4,10 @@ Global:
   log_smooth_window: 20
   print_batch_step: 50
   save_model_dir: ./output/rec/rec_satrn/
-  save_epoch_step: 1
+  save_epoch_step: 5
   # evaluation is run every 5000 iterations
   eval_batch_step: [0, 1000]
-  cal_metric_during_train: False
+  cal_metric_during_train: True
   pretrained_model:
   checkpoints:
   save_inference_dir:
