@@ -8,7 +8,7 @@ Global:
   print_batch_step: 10
   save_model_dir: ./output/PP-OCRv5_mobile_rec
   save_epoch_step: 10
-  eval_batch_step: [0, 3500]
+  eval_batch_step: [0, 2000]
   cal_metric_during_train: true
   pretrained_model:
   checkpoints:
