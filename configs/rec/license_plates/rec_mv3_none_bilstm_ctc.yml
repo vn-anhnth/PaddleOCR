@@ -1,6 +1,6 @@
 Global:
   use_gpu: True
-  epoch_num: 100
+  epoch_num: 105
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec/mv3_none_bilstm_ctc/
@@ -21,11 +21,22 @@ Global:
   save_res_path: ./output/rec/predicts_mv3_none_bilstm_ctc.txt
 
 Optimizer:
+  # name: Adam
+  # beta1: 0.9
+  # beta2: 0.999
+  # lr:
+  #   learning_rate: 0.0005
+  # regularizer:
+  #   name: 'L2'
+  #   factor: 0
+
   name: Adam
   beta1: 0.9
   beta2: 0.999
   lr:
-    learning_rate: 0.0005
+    name: Cosine
+    learning_rate: 0.001
+    warmup_epoch: 10
   regularizer:
     name: 'L2'
     factor: 0
