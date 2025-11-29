@@ -67,9 +67,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -88,9 +88,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
