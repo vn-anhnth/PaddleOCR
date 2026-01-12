@@ -106,7 +106,7 @@ Eval:
     name: SimpleDataSet
     data_dir: /kaggle/input/d/anhlone3/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/d/anhlone3/ocr-license-plate-dataset/val_labels.txt
+    - /kaggle/input/d/anhlone3/ocr-license-plate-dataset/test_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
