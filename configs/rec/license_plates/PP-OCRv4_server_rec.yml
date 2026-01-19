@@ -6,8 +6,8 @@ Global:
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec_ppocr_v4_hgnet
-  save_epoch_step: 10
-  eval_batch_step: [0, 500]
+  save_epoch_step: 5
+  eval_batch_step: [0, 400]
   cal_metric_during_train: true
   pretrained_model:
   checkpoints:
@@ -76,10 +76,10 @@ Train:
   dataset:
     name: MultiScaleDataSet
     ds_width: false
-    data_dir: /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8
+    data_dir: /content/ocr-license-plate-dataset
     ext_op_transform_idx: 1
     label_file_list:
-    - /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -102,7 +102,7 @@ Train:
   sampler:
     name: MultiScaleSampler
     scales: [[320, 32], [320, 48], [320, 64]]
-    first_bs: &bs 128
+    first_bs: &bs 512
     fix_bs: false
     divided_factor: [8, 16] # w, h
     is_training: True
@@ -114,9 +114,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -135,5 +135,5 @@ Eval:
   loader:
     shuffle: false
     drop_last: false
-    batch_size_per_card: 128
+    batch_size_per_card: 512
     num_workers: 4
