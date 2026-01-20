@@ -4,9 +4,9 @@ Global:
   log_smooth_window: 200
   print_batch_step: 200
   save_model_dir: ./output/rec/r45_visionlan
-  save_epoch_step: 10
+  save_epoch_step: 5
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 3000]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints: 
@@ -73,9 +73,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: RGB
@@ -88,16 +88,16 @@ Train:
           keep_keys: ['image', 'label', 'label_res', 'label_sub', 'label_id', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 32
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 4
 
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: RGB
@@ -110,6 +110,6 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 32
+    batch_size_per_card: 256
     num_workers: 4
   
