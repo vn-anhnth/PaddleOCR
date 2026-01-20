@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/svtr/
   save_epoch_step: 5
   # evaluation is run every 2000 iterations after the 0th iteration
-  eval_batch_step: [0, 500]
+  eval_batch_step: [0, 400]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -80,9 +80,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/d/anhlone3/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/d/anhlone3/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -104,9 +104,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/d/anhlone3/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/d/anhlone3/ocr-license-plate-dataset/test_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -120,5 +120,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 256
+    batch_size_per_card: 512
     num_workers: 2
