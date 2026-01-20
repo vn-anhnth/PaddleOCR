@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/r45_abinet/
   save_epoch_step: 5
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 400]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -83,7 +83,7 @@ Train:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 512
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 4
 
@@ -106,6 +106,6 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 512
+    batch_size_per_card: 256
     num_workers: 4
     use_shared_memory: False
