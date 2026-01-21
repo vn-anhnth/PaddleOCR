@@ -1,12 +1,12 @@
 Global:
   use_gpu: True
-  epoch_num: 105
+  epoch_num: 100
   log_smooth_window: 20
-  print_batch_step: 5
+  print_batch_step: 3
   save_model_dir: ./output/rec/parseq
-  save_epoch_step: 5
+  save_epoch_step: 3
   # evaluation is run every 5000 iterations after the 4000th iteration
-  eval_batch_step: [0, 400]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: True
   pretrained_model: 
   checkpoints:
@@ -105,7 +105,7 @@ Train:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 52
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 4
 
@@ -129,5 +129,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 52
+    batch_size_per_card: 256
     num_workers: 4
