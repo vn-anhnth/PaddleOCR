@@ -1,12 +1,12 @@
 Global:
   use_gpu: True
-  epoch_num: 105
+  epoch_num: 100
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec/svtr/
-  save_epoch_step: 5
+  save_epoch_step: 3
   # evaluation is run every 2000 iterations after the 0th iteration
-  eval_batch_step: [0, 400]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -80,9 +80,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /content/ocr-license-plate-dataset
+    data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
-    - /content/ocr-license-plate-dataset/train_labels.txt
+    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -97,16 +97,16 @@ Train:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 512
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 8
 
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /content/ocr-license-plate-dataset
+    data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
-    - /content/ocr-license-plate-dataset/val_labels.txt
+    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -120,5 +120,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 512
+    batch_size_per_card: 256
     num_workers: 2
