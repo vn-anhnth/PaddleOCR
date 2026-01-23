@@ -4,9 +4,9 @@ Global:
   log_smooth_window: 20
   print_batch_step: 20
   save_model_dir: ./output/rec/rec_r31_robustscanner/
-  save_epoch_step: 5
+  save_epoch_step: 3
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 2000]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints: 
@@ -70,9 +70,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -86,7 +86,7 @@ Train:
           keep_keys: ['image', 'label', 'valid_ratio', 'word_positons'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 64
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 8
     use_shared_memory: False
@@ -94,9 +94,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -111,7 +111,7 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 64
+    batch_size_per_card: 256
     num_workers: 4
     use_shared_memory: False
   
