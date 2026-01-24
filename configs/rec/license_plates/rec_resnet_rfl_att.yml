@@ -23,26 +23,26 @@ Global:
 
 
 Optimizer:
-  name: AdamW
+#   name: AdamW
+#   beta1: 0.9
+#   beta2: 0.999
+#   weight_decay: 0.0
+#   clip_norm_global: 5.0
+#   lr:
+#     name: Piecewise
+#     decay_epochs : [3, 4, 5]
+#     values : [0.001, 0.0003, 0.00009, 0.000027]
+
+  name: Adam
   beta1: 0.9
   beta2: 0.999
-  weight_decay: 0.0
-  clip_norm_global: 5.0
   lr:
-    name: Piecewise
-    decay_epochs : [3, 4, 5]
-    values : [0.001, 0.0003, 0.00009, 0.000027]
-
-  # name: Adam
-  # beta1: 0.9
-  # beta2: 0.999
-  # lr:
-  #   name: Cosine
-  #   learning_rate: 0.001
-  #   warmup_epoch: 10
-  # regularizer:
-  #   name: 'L2'
-  #   factor: 0
+    name: Cosine
+    learning_rate: 0.001
+    warmup_epoch: 10
+  regularizer:
+    name: 'L2'
+    factor: 0
 
 Architecture:
   model_type: rec
