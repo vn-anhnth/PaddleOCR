@@ -76,10 +76,10 @@ PostProcess:
   name: RFLLabelDecode
 
 Metric:
-  # name: CNTMetric
-  # main_indicator: acc
-  name: RecMetric
+  name: CNTMetric
   main_indicator: acc
+  # name: RecMetric
+  # main_indicator: acc
 
 Train:
   dataset:
