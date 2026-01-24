@@ -73,7 +73,7 @@ PostProcess:
 Metric:
   name: RecMetric
   main_indicator: acc
-  ignore_space: False
+  # ignore_space: False
 
 Train:
   dataset:
