@@ -68,9 +68,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage:
           img_mode: BGR
@@ -83,16 +83,16 @@ Train:
           keep_keys: ['image', 'label']
   loader:
     shuffle: True
-    batch_size_per_card: 128
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 8
 
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /root/.cache/kagglehub/datasets/anhlone3/ocr-license-plate-dataset/versions/8/val_labels.txt
+    - /content/ocr-license-plate-dataset/test_labels.txt
     transforms:
       - DecodeImage:
           img_mode: BGR
@@ -105,5 +105,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 64
+    batch_size_per_card: 256
     num_workers: 8
