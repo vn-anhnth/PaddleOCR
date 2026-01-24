@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/mv3_tps_bilstm_ctc/
   save_epoch_step: 3
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 500]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -22,25 +22,25 @@ Global:
   use_wandb: True
 
 Optimizer:
-  # name: Adam
-  # beta1: 0.9
-  # beta2: 0.999
-  # lr:
-  #   learning_rate: 0.0005
-  # regularizer:
-  #   name: 'L2'
-  #   factor: 0
-
   name: Adam
   beta1: 0.9
   beta2: 0.999
   lr:
-    name: Cosine
-    learning_rate: 0.001
-    warmup_epoch: 10
+    learning_rate: 0.0005
   regularizer:
     name: 'L2'
     factor: 0
+
+  # name: Adam
+  # beta1: 0.9
+  # beta2: 0.999
+  # lr:
+  #   name: Cosine
+  #   learning_rate: 0.001
+  #   warmup_epoch: 10
+  # regularizer:
+  #   name: 'L2'
+  #   factor: 0
 
 Architecture:
   model_type: rec
@@ -75,9 +75,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -96,9 +96,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
