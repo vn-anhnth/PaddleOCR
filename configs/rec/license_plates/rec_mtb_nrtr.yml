@@ -4,9 +4,9 @@ Global:
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec/nrtr/
-  save_epoch_step: 10
+  save_epoch_step: 3
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 450]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -27,12 +27,12 @@ Optimizer:
   beta2: 0.99
   clip_norm: 5.0
   lr:
-    # name: Cosine
-    # learning_rate: 0.0005
-    # warmup_epoch: 2
     name: Cosine
-    learning_rate: 0.001
-    warmup_epoch: 10
+    learning_rate: 0.0005
+    warmup_epoch: 2
+    # name: Cosine
+    # learning_rate: 0.001
+    # warmup_epoch: 10
   regularizer:
     name: 'L2'
     factor: 0.
@@ -66,9 +66,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -81,16 +81,16 @@ Train:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 512
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 8
 
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
