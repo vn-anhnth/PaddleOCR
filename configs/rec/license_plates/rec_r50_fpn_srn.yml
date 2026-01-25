@@ -4,9 +4,9 @@ Global:
   log_smooth_window: 20
   print_batch_step: 5
   save_model_dir: ./output/rec/srn_new
-  save_epoch_step: 10
+  save_epoch_step: 3
   # evaluation is run every 5000 iterations after the 4000th iteration
-  eval_batch_step: [0, 3500]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: True
   pretrained_model: 
   checkpoints:
@@ -24,23 +24,23 @@ Global:
 
 
 Optimizer:
-  # name: Adam
-  # beta1: 0.9
-  # beta2: 0.999
-  # clip_norm: 10.0
-  # lr:
-  #   learning_rate: 0.0001
-
   name: Adam
   beta1: 0.9
   beta2: 0.999
+  clip_norm: 10.0
   lr:
-    name: Cosine
-    learning_rate: 0.001
-    warmup_epoch: 10
-  regularizer:
-    name: 'L2'
-    factor: 0
+    learning_rate: 0.0001
+
+  # name: Adam
+  # beta1: 0.9
+  # beta2: 0.999
+  # lr:
+  #   name: Cosine
+  #   learning_rate: 0.001
+  #   warmup_epoch: 10
+  # regularizer:
+  #   name: 'L2'
+  #   factor: 0
 
 Architecture:
   model_type: rec
@@ -70,9 +70,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -90,16 +90,16 @@ Train:
                       'gsrm_slf_attn_bias2'] # dataloader will return list in this order
   loader:
     shuffle: False
-    batch_size_per_card: 64
+    batch_size_per_card: 256
     drop_last: False
     num_workers: 4
 
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -118,5 +118,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 32
+    batch_size_per_card: 256
     num_workers: 4
