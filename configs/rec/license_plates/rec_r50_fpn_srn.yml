@@ -90,7 +90,7 @@ Train:
                       'gsrm_slf_attn_bias2'] # dataloader will return list in this order
   loader:
     shuffle: False
-    batch_size_per_card: 256
+    batch_size_per_card: 128
     drop_last: False
     num_workers: 4
 
@@ -99,7 +99,7 @@ Eval:
     name: SimpleDataSet
     data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /content/ocr-license-plate-dataset/test_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -118,5 +118,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 256
+    batch_size_per_card: 128
     num_workers: 4
