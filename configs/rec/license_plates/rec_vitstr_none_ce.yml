@@ -86,7 +86,7 @@ Eval:
     name: SimpleDataSet
     data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /content/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/test_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
