@@ -7,10 +7,10 @@ Global:
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec_ppocr_v4
-  save_epoch_step: 10
+  save_epoch_step: 3
   eval_batch_step:
   - 0
-  - 2500
+  - 1000
   cal_metric_during_train: true
   pretrained_model: null
   checkpoints: null
@@ -69,15 +69,15 @@ PostProcess:
 Metric:
   name: RecMetric
   main_indicator: acc
-  ignore_space: false
+  # ignore_space: false
 Train:
   dataset:
     name: MultiScaleDataSet
     ds_width: false
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     ext_op_transform_idx: 1
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -117,15 +117,15 @@ Train:
     is_training: true
   loader:
     shuffle: true
-    batch_size_per_card: 96
+    batch_size_per_card: 256
     drop_last: true
     num_workers: 8
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -147,6 +147,6 @@ Eval:
   loader:
     shuffle: false
     drop_last: false
-    batch_size_per_card: 128
+    batch_size_per_card: 256
     num_workers: 4
 profiler_options: null
