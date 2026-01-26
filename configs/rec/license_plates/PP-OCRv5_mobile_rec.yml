@@ -5,17 +5,17 @@ Global:
   use_gpu: true
   epoch_num: 105
   log_smooth_window: 20
-  print_batch_step: 10
+  print_batch_step: 3
   save_model_dir: ./output/PP-OCRv5_mobile_rec
   save_epoch_step: 10
-  eval_batch_step: [0, 2000]
+  eval_batch_step: [0, 1000]
   cal_metric_during_train: true
   pretrained_model:
   checkpoints:
   save_inference_dir:
   use_visualdl: false
   infer_img: doc/imgs_words/ch/word_1.jpg
-  character_dict_path: ./ppocr/utils/dict/ppocrv5_dict.txt
+  character_dict_path: ./ppocr/utils/dict/license_plate_vn_dict.txt
   max_text_length: &max_text_length 25
   infer_mode: false
   use_space_char: true
@@ -78,10 +78,10 @@ Train:
   dataset:
     name: MultiScaleDataSet
     ds_width: false
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     ext_op_transform_idx: 1
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -104,7 +104,7 @@ Train:
   sampler:
     name: MultiScaleSampler
     scales: [[320, 32], [320, 48], [320, 64]]
-    first_bs: &bs 64
+    first_bs: &bs 256
     fix_bs: false
     divided_factor: [8, 16] # w, h
     is_training: True
@@ -116,9 +116,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -137,5 +137,5 @@ Eval:
   loader:
     shuffle: false
     drop_last: false
-    batch_size_per_card: 64
+    batch_size_per_card: 256
     num_workers: 4
