@@ -23,16 +23,27 @@ Global:
 
 
 Optimizer:
-  name: Adadelta
-  weight_deacy: 0.0
-  momentum: 0.9
+  # name: Adadelta
+  # weight_deacy: 0.0
+  # momentum: 0.9
+  # lr:
+  #   name: Piecewise
+  #   decay_epochs: [4, 5]
+  #   values: [1.0, 0.1, 0.01]
+  # regularizer:
+  #   name: 'L2'
+  #   factor: 2.0e-05
+
+  name: Adam
+  beta1: 0.9
+  beta2: 0.999
   lr:
-    name: Piecewise
-    decay_epochs: [4, 5]
-    values: [1.0, 0.1, 0.01]
+    name: Cosine
+    learning_rate: 0.001
+    warmup_epoch: 10
   regularizer:
     name: 'L2'
-    factor: 2.0e-05
+    factor: 0
 
 
 Architecture:
@@ -66,12 +77,12 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /content/ocr-license-plate-dataset
+    data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
-    - /content/ocr-license-plate-dataset/train_labels.txt
+    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - Fasttext:
-          path: "/content/cc.en.300.bin"
+          path: "/kaggle/working/cc.en.300.bin"
       - DecodeImage: # load image
           img_mode: BGR
           channel_first: False
@@ -91,9 +102,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /content/ocr-license-plate-dataset
+    data_dir: /kaggle/input/ocr-license-plate-dataset
     label_file_list:
-    - /content/ocr-license-plate-dataset/val_labels.txt
+    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
