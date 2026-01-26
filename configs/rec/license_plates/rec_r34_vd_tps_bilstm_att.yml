@@ -42,7 +42,7 @@ Architecture:
     model_name: large
   Backbone:
     name: ResNet  
-    layers: 34
+    layers: 18
   Neck:
     name: SequenceEncoder
     encoder_type: rnn 
