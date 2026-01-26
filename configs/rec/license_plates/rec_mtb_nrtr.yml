@@ -6,7 +6,7 @@ Global:
   save_model_dir: ./output/rec/nrtr/
   save_epoch_step: 3
   # evaluation is run every 2000 iterations
-  eval_batch_step: [0, 1000]
+  eval_batch_step: [0, 500]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -27,12 +27,12 @@ Optimizer:
   beta2: 0.99
   clip_norm: 5.0
   lr:
-    name: Cosine
-    learning_rate: 0.0005
-    warmup_epoch: 2
     # name: Cosine
-    # learning_rate: 0.001
-    # warmup_epoch: 10
+    # learning_rate: 0.0005
+    # warmup_epoch: 2
+    name: Cosine
+    learning_rate: 0.001
+    warmup_epoch: 10
   regularizer:
     name: 'L2'
     factor: 0.
