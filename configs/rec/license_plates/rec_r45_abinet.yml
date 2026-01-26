@@ -47,8 +47,9 @@ Architecture:
     name: ResNet45
   Head:
     name: ABINetHead
-    # use_lang: True
-    iter_size: 3
+    use_lang: True
+    # iter_size: 3
+    iter_size: 0
     max_length: *max_text_length
     image_size: [ &h 32, &w 128 ]  # [ h, w ]
 
