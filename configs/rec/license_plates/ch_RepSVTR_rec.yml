@@ -2,7 +2,7 @@ Global:
   model_name: ch_RepSVTR_rec  # To use static model for inference.
   debug: false
   use_gpu: true
-  epoch_num: 200
+  epoch_num: 105
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/ch_RepSVTR_rec
@@ -21,6 +21,7 @@ Global:
   distributed: true
   save_res_path: ./output/rec/predicts_repsvtr.txt
   d2s_train_image_shape: [3, 48, 320]
+  use_wandb: True
 
 Optimizer:
   name: AdamW
