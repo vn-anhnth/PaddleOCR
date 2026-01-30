@@ -1,6 +1,6 @@
 Global:
   use_gpu: True
-  epoch_num: 100
+  epoch_num: 105
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec/svtr/
@@ -80,9 +80,9 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/train_labels.txt
+    - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -104,9 +104,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /kaggle/input/ocr-license-plate-dataset
+    data_dir: /content/ocr-license-plate-dataset
     label_file_list:
-    - /kaggle/input/ocr-license-plate-dataset/val_labels.txt
+    - /content/ocr-license-plate-dataset/val_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
