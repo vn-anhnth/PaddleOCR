@@ -22,6 +22,7 @@ Global:
   save_res_path: ./output/rec/predicts_ppocrv4.txt
   d2s_train_image_shape: [3, 48, 320]
   use_wandb: True
+  save_best_model: True
 
 Optimizer:
   name: Adam
