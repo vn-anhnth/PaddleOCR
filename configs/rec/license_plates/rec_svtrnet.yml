@@ -4,9 +4,9 @@ Global:
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec/svtr/
-  save_epoch_step: 3
+  save_epoch_step: 1
   # evaluation is run every 2000 iterations after the 0th iteration
-  eval_batch_step: [0, 1000]
+  eval_batch_step: [0, 500]
   cal_metric_during_train: True
   pretrained_model:
   checkpoints:
@@ -34,8 +34,10 @@ Optimizer:
   one_dim_param_no_weight_decay: True
   lr:
     name: Cosine
-    learning_rate: 0.001
-    warmup_epoch: 10
+    # learning_rate: 0.001
+    # warmup_epoch: 10
+    learning_rate: 0.0005
+    warmup_epoch: 2
 
 Architecture:
   model_type: rec
@@ -97,7 +99,7 @@ Train:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
     shuffle: True
-    batch_size_per_card: 256
+    batch_size_per_card: 512
     drop_last: True
     num_workers: 8
 
