@@ -92,7 +92,7 @@ Eval:
     name: SimpleDataSet
     data_dir: /content/test_dataset_for_perfomance/test_dataset_for_perfomance
     label_file_list:
-    - /content/test_dataset_for_perfomance/test_dataset_for_perfomance/clear/test_labels.txt
+    - /content/test_dataset_for_perfomance/test_dataset_for_perfomance/degraded/test_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: RGB
