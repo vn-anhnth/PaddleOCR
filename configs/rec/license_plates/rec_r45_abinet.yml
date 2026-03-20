@@ -90,9 +90,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: /content/ocr-license-plate-dataset
+    data_dir: /content/test_dataset_for_perfomance/test_dataset_for_perfomance
     label_file_list:
-    - /content/ocr-license-plate-dataset/test_labels.txt
+    - /content/test_dataset_for_perfomance/test_dataset_for_perfomance/clear/test_labels.txt
     transforms:
       - DecodeImage: # load image
           img_mode: RGB
