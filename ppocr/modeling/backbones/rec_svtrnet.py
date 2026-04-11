@@ -278,6 +278,49 @@ class Block(nn.Layer):
         return x
 
 
+class RowAttentionBlock(nn.Layer):
+    """Attention-only block (no MLP) for Row-Decoupled Attention (RDA).
+    Replaces the full Block in blocks3 to remove cross-row MLP mixing."""
+
+    def __init__(
+        self,
+        dim,
+        num_heads,
+        qkv_bias=False,
+        qk_scale=None,
+        attn_drop=0.0,
+        proj_drop=0.0,
+        drop_path=0.0,
+        norm_layer="nn.LayerNorm",
+        epsilon=1e-6,
+        prenorm=True,
+    ):
+        super().__init__()
+        if isinstance(norm_layer, str):
+            self.norm = eval(norm_layer)(dim, epsilon=epsilon)
+        else:
+            self.norm = norm_layer(dim)
+        self.attn = Attention(
+            dim,
+            num_heads=num_heads,
+            mixer="Global",
+            HW=None,
+            qkv_bias=qkv_bias,
+            qk_scale=qk_scale,
+            attn_drop=attn_drop,
+            proj_drop=proj_drop,
+        )
+        self.drop_path = DropPath(drop_path) if drop_path > 0.0 else Identity()
+        self.prenorm = prenorm
+
+    def forward(self, x):
+        if self.prenorm:
+            x = self.norm(x + self.drop_path(self.attn(x)))
+        else:
+            x = x + self.drop_path(self.attn(self.norm(x)))
+        return x
+
+
 class PatchEmbed(nn.Layer):
     """Image to Patch Embedding"""
 
@@ -540,20 +583,16 @@ class SVTRNet(nn.Layer):
             HW = [self.HW[0] // 4, self.HW[1]]
         else:
             HW = self.HW
-        self.blocks3 = nn.LayerList(
+        # RDA: blocks3 replaced by RowAttentionBlock (Attention-only, no MLP)
+        self.rda_layers = nn.LayerList(
             [
-                Block_unit(
+                RowAttentionBlock(
                     dim=embed_dim[2],
                     num_heads=num_heads[2],
-                    mixer=mixer[depth[0] + depth[1] :][i],
-                    HW=HW,
-                    local_mixer=local_mixer[2],
-                    mlp_ratio=mlp_ratio,
                     qkv_bias=qkv_bias,
                     qk_scale=qk_scale,
-                    drop=drop_rate,
-                    act_layer=eval(act),
                     attn_drop=attn_drop_rate,
+                    proj_drop=drop_rate,
                     drop_path=dpr[depth[0] + depth[1] :][i],
                     norm_layer=norm_layer,
                     epsilon=epsilon,
@@ -564,7 +603,7 @@ class SVTRNet(nn.Layer):
         )
         self.last_stage = last_stage
         if last_stage:
-            self.avg_pool = nn.AdaptiveAvgPool2D([1, out_char_num])
+            # avg_pool removed: RUC (Row-Unfolding Collapse) uses reshape instead
             self.last_conv = nn.Conv2D(
                 in_channels=embed_dim[2],
                 out_channels=self.out_channels,
@@ -615,8 +654,13 @@ class SVTRNet(nn.Layer):
                     [0, self.embed_dim[1], self.HW[0] // 2, self.HW[1]]
                 )
             )
-        for blk in self.blocks3:
+        # RDA: Row-Decoupled Attention
+        # Reshape [B, h3*W, C] -> [B*h3, W, C]: each row attends independently
+        h3 = self.HW[0] // 4 if self.patch_merging is not None else self.HW[0]
+        x = x.reshape([-1, self.HW[1], self.embed_dim[2]])
+        for blk in self.rda_layers:
             x = blk(x)
+        x = x.reshape([-1, h3 * self.HW[1], self.embed_dim[2]])
         if not self.prenorm:
             x = self.norm(x)
         return x
@@ -631,8 +675,10 @@ class SVTRNet(nn.Layer):
                 h = self.HW[0] // 4
             else:
                 h = self.HW[0]
-            x = self.avg_pool(
-                x.transpose([0, 2, 1]).reshape([0, self.embed_dim[2], h, self.HW[1]])
+            # RUC: Row-Unfolding Collapse
+            # [B, h*W, C] -> [B, C, 1, h*W] thay vi avg_pool ve [B, C, 1, W]
+            x = x.transpose([0, 2, 1]).reshape(
+                [0, self.embed_dim[2], 1, h * self.HW[1]]
             )
             x = self.last_conv(x)
             x = self.hardswish(x)
