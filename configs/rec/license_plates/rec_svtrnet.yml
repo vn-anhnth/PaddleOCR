@@ -1,6 +1,6 @@
 Global:
   use_gpu: True
-  epoch_num: 300
+  epoch_num: 105
   log_smooth_window: 20
   print_batch_step: 10
   save_model_dir: ./output/rec/svtr/
@@ -8,7 +8,7 @@ Global:
   # evaluation is run every 2000 iterations after the 0th iteration
   eval_batch_step: [0, 500]
   cal_metric_during_train: True
-  pretrained_model:
+  pretrained_model: ./pretrained_models/rec_svtr_tiny_none_ctc_en_train/svtr_rda_init.pdparams
   checkpoints:
   save_inference_dir:
   use_visualdl: False
