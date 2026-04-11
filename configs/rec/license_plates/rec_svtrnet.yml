@@ -37,7 +37,7 @@ Optimizer:
     # learning_rate: 0.001
     # warmup_epoch: 10
     learning_rate: 0.0005
-    warmup_epoch: 5
+    warmup_epoch: 10
 
 Architecture:
   model_type: rec
