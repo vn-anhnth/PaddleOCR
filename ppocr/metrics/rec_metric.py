@@ -41,6 +41,8 @@ class RecMetric(object):
         correct_num = 0
         all_num = 0
         norm_edit_dis = 0.0
+        cer_edit_dis = 0
+        cer_char_num = 0
         for (pred, pred_conf), (target, _) in zip(preds, labels):
             if self.ignore_space:
                 pred = pred.replace(" ", "")
@@ -49,15 +51,20 @@ class RecMetric(object):
                 pred = self._normalize_text(pred)
                 target = self._normalize_text(target)
             norm_edit_dis += Levenshtein.normalized_distance(pred, target)
+            cer_edit_dis += Levenshtein.distance(pred, target)
+            cer_char_num += len(target)
             if pred == target:
                 correct_num += 1
             all_num += 1
         self.correct_num += correct_num
         self.all_num += all_num
         self.norm_edit_dis += norm_edit_dis
+        self.cer_edit_dis += cer_edit_dis
+        self.cer_char_num += cer_char_num
         return {
             "acc": correct_num / (all_num + self.eps),
             "norm_edit_dis": 1 - norm_edit_dis / (all_num + self.eps),
+            "cer": cer_edit_dis / (cer_char_num + self.eps),
         }
 
     def get_metric(self):
@@ -65,17 +72,21 @@ class RecMetric(object):
         return metrics {
                  'acc': 0,
                  'norm_edit_dis': 0,
+                 'cer': 0,
             }
         """
         acc = 1.0 * self.correct_num / (self.all_num + self.eps)
         norm_edit_dis = 1 - self.norm_edit_dis / (self.all_num + self.eps)
+        cer = self.cer_edit_dis / (self.cer_char_num + self.eps)
         self.reset()
-        return {"acc": acc, "norm_edit_dis": norm_edit_dis}
+        return {"acc": acc, "norm_edit_dis": norm_edit_dis, "cer": cer}
 
     def reset(self):
         self.correct_num = 0
         self.all_num = 0
         self.norm_edit_dis = 0
+        self.cer_edit_dis = 0
+        self.cer_char_num = 0
 
 
 class CNTMetric(object):
