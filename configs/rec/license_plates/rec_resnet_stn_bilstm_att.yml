@@ -82,7 +82,7 @@ Train:
     - /content/ocr-license-plate-dataset/train_labels.txt
     transforms:
       - Fasttext:
-          path: "/kaggle/working/cc.en.300.bin"
+          path: "/content/cc.en.300.bin"
       - DecodeImage: # load image
           img_mode: BGR
           channel_first: False
